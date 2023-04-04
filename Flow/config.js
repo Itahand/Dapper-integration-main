@@ -1,19 +1,21 @@
-/** @format */
+import { config } from "@onflow/fcl"
+import publicConfig from "../publicConfig"
+import {send as httpSend} from "@onflow/transport-http"
 
-import { config } from "@onflow/fcl";
+config({
+  "flow.network": publicConfig.chainEnv == "emulator" ? "local" : publicConfig.chainEnv,
+  "accessNode.api": publicConfig.accessNodeAPI,
+  "discovery.wallet": publicConfig.walletDiscovery,
+  "sdk.transport": httpSend,
+  "app.detail.title": "flowview",
+  "app.detail.icon": "https://i.imgur.com/YL8MLEd.png",
 
-config()
-  .put("app.detail.title", "Crypto Card Shop")
-  .put(
-    "app.detail.icon",
-    "https://clipground.com/images/placeholder-logo-6.png"
-  )
-  .put("accessNode.api", "https://rest-mainnet.onflow.org")
-  .put("discovery.wallet", "https://fcl-discovery.onflow.org/authn")
-  .put(
-    "discovery.authn.endpoint",
-    "https://fcl-discovery.onflow.org/testnet/authn"
-  )
-  .put("discovery.authn.include", [
-    "0xead892083b3e2c6c", // Dapper Wallet
-  ]);
+  "0xNFTCatalog": publicConfig.nftCatalogAddress,
+  "0xMetadataViews": publicConfig.metadataViewsAddress,
+  "0xNonFungibleToken": publicConfig.nonFungibleTokenAddress,
+  "0xFungibleToken": publicConfig.fungibleTokenAddress,
+  "0xFungibleTokenSwitchboard": publicConfig.fungibleTokenSwitchboardAddress,
+  "0xFlowbox": publicConfig.flowboxAddress,
+}).put("discovery.authn.include", [
+  "0xead892083b3e2c6c", // Dapper Wallet
+])
