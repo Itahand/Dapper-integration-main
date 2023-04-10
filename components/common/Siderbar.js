@@ -9,6 +9,7 @@ export default function Sidebar(props) {
   let menuItems = [
 
     { id: "0", label: `Collection`, link: { pathname: "/account/[account]/collection", query: { account: account } } },
+  //  { id: "1", label: `Basic`, link: { pathname: "/account/[account]", query: { account: account } } },
 
   ]
 

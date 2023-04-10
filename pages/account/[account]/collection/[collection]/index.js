@@ -118,112 +118,6 @@ export default function CollectionDetail(props) {
     }
   }
 
-  const getLinks = (linkSource) => {
-    if (!linkSource) { return <div></div> }
-    const externalURL = linkSource.externalURL
-    let externalLink = null
-    if (externalURL && externalURL.url.trim() != '') {
-      externalLink = externalURL.url
-    }
-
-    const socials = linkSource.socials || {}
-    const twitter = socials.twitter && socials.twitter.url.trim() != '' ? socials.twitter.url : null
-    const discord = socials.discord && socials.discord.url.trim() != '' ? socials.discord.url : null
-
-    return (
-      <div className="flex gap-x-2">
-        {
-          <div>
-            <ShareIcon className="w-[24px] p-1 rounded-full aspect-square text-gray-700 bg-drizzle hover:bg-drizzle-dark"
-              onClick={async () => {
-                await navigator.clipboard.writeText(window.location.href)
-                setShowBasicNotification(true)
-                setBasicNotificationContent({ type: "information", title: "Link Copied!", detail: null })
-              }} />
-          </div>
-        }
-        {
-          linkSource.uuid ?
-            <a
-              href={getContractLink(linkSource.uuid)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-1 rounded-full h-[24px] aspect-square bg-drizzle text-black"
-            >
-              <CodeIcon className="aspect-square text-black" />
-            </a> : null
-        }
-        {
-          linkSource.collectionIdentifier ?
-            <a
-              href={`${publicConfig.nftCatalogURL}/${collection.collectionIdentifier}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="h-[24px] aspect-square shrink-0 relative">
-                <Image src={"/nft-catalog.png"} alt="" fill sizes="5vw" className="object-contain" />
-              </div>
-            </a> : null
-        }
-        {externalLink ?
-          <a
-            href={externalLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <GlobeAltIcon className="h-[24px] aspect-square text-drizzle" />
-          </a> : null}
-        {twitter ?
-          <a
-            href={twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="h-[24px] aspect-square shrink-0 relative">
-              <Image src={"/twitter.png"} alt="" fill sizes="5vw" className="object-contain" />
-            </div>
-          </a> : null}
-        {discord ?
-          <a
-            href={discord}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="h-[24px] aspect-square shrink-0 relative">
-              <Image src={"/discord.png"} alt="" fill sizes="5vw" className="object-contain" />
-            </div>
-          </a> : null}
-      </div>
-    )
-  }
-
-  const getContractInfoView = () => {
-    if (collection && collection.addedCatalogInfo && collection.collectionIdentifier) {
-      const contractName = collection.contractName
-      const contractAddress = collection.contractAddress
-      const publicPathIdentifier = collection.publicPathIdentifier
-      return (
-        <div className="px-1 mt-4 w-full flex justify-start items-center gap-x-2">
-          <label className={`shrink-0 cursor-pointer font-bold text-xs px-2 py-1 leading-5 rounded-full bg-emerald-100 text-emerald-600`}
-            onClick={() => {
-              window.open(getContractLink(`A.${contractAddress.replace("0x", "")}.${contractName}`))
-            }}
-          >
-            <span className="font-normal text-emerald-500">{`Contract Name: `}</span>
-            {`${contractName}`}
-          </label>
-          <label className={`shrink-0 cursor-pointer font-bold text-xs px-2 py-1 leading-5 rounded-full bg-emerald-100 text-emerald-600`}
-            onClick={() => {
-              router.push(`/account/${contractAddress}`)
-            }}><span className="font-normal text-emerald-500">{`Contract Address: `}</span>{`${contractAddress}`}</label>
-          <label className={`shrink-0 font-bold text-xs px-2 py-1 leading-5 rounded-full bg-emerald-100 text-emerald-600`}><span className="font-normal text-emerald-500">{`PublicPath ID: `}</span>{`${publicPathIdentifier}`}</label>
-        </div>
-      )
-    }
-
-    return null
-  }
-
   const getBasicInfoView = () => {
     let imageSrc = "/token_placeholder.png"
     let name = collectionPath
@@ -261,9 +155,7 @@ export default function CollectionDetail(props) {
                 }}>{`/storage/`}<span className="font-bold">{`${collectionPath}`}</span></div>
             </div>
           </div>
-          {getLinks(linkSource)}
         </div>
-        {getContractInfoView()}
         <div className="px-1 py-2 w-[1070px]">{description}</div>
       </div>
     )
