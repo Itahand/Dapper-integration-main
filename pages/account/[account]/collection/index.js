@@ -149,7 +149,7 @@ export default function Collection(props) {
             </div>
           </div>
         </div>
-      </Layout>
+      </Layout> 
     </div>
   )
 }

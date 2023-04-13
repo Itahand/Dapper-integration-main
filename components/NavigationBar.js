@@ -26,7 +26,7 @@ export default function NavigationBar() {
     const shouldDoConnectionJump = localStorage.getItem("shouldDoConnectionJump") || "YES"
     if ((user && user.loggedIn && shouldDoConnectionJump) == "YES") {
       localStorage.setItem("shouldDoConnectionJump", "NO")
-      router.push(`/account/${user.addr}/collection`, undefined, { shallow: true })
+      router.push(`/account/${user.addr}/collection/MomentCollection`, undefined, { shallow: true })
     }
   }, [user])
 
@@ -42,7 +42,7 @@ export default function NavigationBar() {
       }
     })
   }, [])
-
+  
   const AuthedState = () => {
     return (
       <div className="shrink truncate flex gap-x-2 items-center">

@@ -16,6 +16,7 @@ export default function NFTDetailView(props) {
 
   const getMediasView = (metadata) => {
     const medias = metadata.medias
+    console.log(medias)
     if (!medias || medias.items.length == 0) { return null }
     return (
       <div className="flex flex-col gap-y-4">
@@ -195,8 +196,12 @@ export default function NFTDetailView(props) {
     const imageSrc = getImageSrcFromMetadataViewsFile(display.thumbnail)
     return (
       <div className="w-full pb-4 pt-2 px-2 flex gap-x-5">
+        
         <div className="w-96 shrink-0 shadow-md aspect-square flex justify-center rounded-2xl bg-white relative overflow-hidden ring-1 ring-black ring-opacity-5">
-          <Image className={"object-contain"} src={imageSrc} fill alt="" priority sizes="33vw" />
+          <video controls autoPlay>
+            <source src={metadata.medias.items[1].file.url} />
+          </video>
+{/*          <Image className={"object-contain"} src={imageSrc} fill alt="" priority sizes="33vw" />  */}
         </div>
         <div className="w-full flex flex-col gap-y-2 justify-between">
           <div className="flex flex-col gap-y-2 items-start">

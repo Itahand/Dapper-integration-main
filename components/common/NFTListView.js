@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { bulkGetNftDisplays, bulkGetNftViews } from "../../flow/scripts"
 import { getImageSrcFromMetadataViewsFile, isValidFlowAddress } from "../../lib/utils"
-import NFTDisplay from "./NFTDisplay"
+//import NFTDisplay from "./NFTDisplay"
 import NFTView from "./NFTView"
 import Spinner from "./Spinner"
 

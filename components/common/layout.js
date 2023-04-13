@@ -19,6 +19,7 @@ export default function Layout({ children }) {
   const [, setBasicNotificationContent] = useRecoilState(basicNotificationContentState)
 
   const router = useRouter()
+//  console.log(router.query.account)
   const { account } = router.query
 
   const [currentDefaultDomains, setCurrentDefaultDomains] = useRecoilState(currentDefaultDomainsState)
@@ -59,7 +60,7 @@ export default function Layout({ children }) {
     <>
       <div className="flex flex-col gap-y-2">
         <div className="px-5 flex flex-col gap-y-1">
-          <label className="text-lg sm:text-xl text-gray-500">Account</label>
+          <label className="text-lg sm:text-xl text-gray-500">Account Name</label>
           <div className="flex gap-x-1 items-center">
             <label className="text-2xl sm:text-3xl font-bold">{`${account}`}</label>
             <DocumentDuplicateIcon className="text-gray-700 hover:text-drizzle w-6 h-6"
@@ -95,7 +96,7 @@ export default function Layout({ children }) {
           {children}
         </div>
       </div>
-      <AlertModal />
+      <AlertModal /> 
     </>
   )
 }

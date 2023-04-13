@@ -20,7 +20,7 @@ export default function NFT(props) {
       getNftMetadataViews(account, collectionPath, tokenID).then((metadataViews) => {
         setMetadata(metadataViews)
       }).catch((e) => {
-        console.error(e)
+        console.error(e, "ERROR")
         if (typeof e == "object") {
           if (e.errorMessage.includes("NFT does not exist")) {
             setMetadataError("NFT not found")
@@ -83,7 +83,7 @@ export default function NFT(props) {
           >
             <div className=" flex gap-x-2 text-drizzle items-center">
               <ArrowLeftIcon className="h-5 w-5" />
-              <label className="cursor-pointer">Collection Detail</label>
+              <label className="cursor-pointer">Collection Details</label>
             </div>
           </button>
 

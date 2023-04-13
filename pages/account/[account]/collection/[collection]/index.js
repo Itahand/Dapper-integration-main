@@ -103,11 +103,11 @@ export default function CollectionDetail(props) {
       )
     } else {
       return (
-        <>
+        <> 
           {
             collection.tokenIDs.length > 0 ?
               <div className="h-screen">
-                <NFTListView collection={collection} setNeedRelink={setNeedRelink} setCollectionDisplay={setCollectionDisplay} />
+               <NFTListView collection={collection} setNeedRelink={setNeedRelink} setCollectionDisplay={setCollectionDisplay} /> 
               </div> :
               <div className="flex mt-10 h-[70px] text-gray-400 text-base justify-center">
                 Nothing found
@@ -144,15 +144,8 @@ export default function CollectionDetail(props) {
             </div>
             <div className="flex flex-col gap-y-1">
               <h1 className="shrink-0 text-xl sm:text-2xl font-bold text-gray-900">
-                {`${name}`}
+                NBA Top Shot
               </h1>
-              <div className="cursor-pointer text-black text-xs mb-1 underline decoration-1 decoration-drizzle"
-                onClick={() => {
-                  router.push({
-                    pathname: `/account/[account]/storage/[storage]`,
-                    query: { account: account, storage: collectionPath }
-                  }, undefined, { shallow: true, scroll: false })
-                }}>{`/storage/`}<span className="font-bold">{`${collectionPath}`}</span></div>
             </div>
           </div>
         </div>
@@ -183,7 +176,7 @@ export default function CollectionDetail(props) {
           {getBasicInfoView()}
 
           <div className="w-[calc(min(100vw,80rem)-160px)] sm:w-[calc(min(100vw,80rem)-192px)] overflow-auto">
-            {showCollection()}
+            {showCollection()} 
           </div>
         </div>
       </Layout>
