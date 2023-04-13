@@ -13,10 +13,9 @@ export default function NFTDetailView(props) {
   const [, setBasicNotificationContent] = useRecoilState(basicNotificationContentState)
 
   const { metadata } = props
-
+  console.log(collectionPath, tokenID)
   const getMediasView = (metadata) => {
     const medias = metadata.medias
-    console.log(medias)
     if (!medias || medias.items.length == 0) { return null }
     return (
       <div className="flex flex-col gap-y-4">
